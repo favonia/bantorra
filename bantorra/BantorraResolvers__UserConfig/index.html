@@ -1,2 +1,31 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>BantorraResolvers__UserConfig (bantorra.BantorraResolvers__UserConfig)</title><link rel="stylesheet" href="../../odoc.css"/><meta charset="utf-8"/><meta name="generator" content="odoc 1.5.1"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><script src="../../highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></head><body><div class="content"><header><nav><a href="../index.html">Up</a> – <a href="../index.html">bantorra</a> &#x00BB; BantorraResolvers__UserConfig</nav><h1>Module <code>BantorraResolvers__UserConfig</code></h1></header><dl><dt class="spec value" id="val-resolver"><a href="#val-resolver" class="anchor"></a><code><span class="keyword">val</span> resolver : <span>app_name:string</span> <span>&#45;&gt;</span> <a href="../Bantorra/Resolver/index.html#type-t">Bantorra.Resolver.t</a></code></dt></dl></div></body></html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>BantorraResolvers__UserConfig (bantorra.BantorraResolvers__UserConfig)</title><link rel="stylesheet" href="../../odoc.css"/><meta charset="utf-8"/><meta name="generator" content="odoc 1.5.1"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><script src="../../highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></head><body><div class="content"><header><nav><a href="../index.html">Up</a> – <a href="../index.html">bantorra</a> &#x00BB; BantorraResolvers__UserConfig</nav><h1>Module <code>BantorraResolvers__UserConfig</code></h1></header><dl><dt class="spec value" id="val-resolver"><a href="#val-resolver" class="anchor"></a><code><span class="keyword">val</span> resolver : <span>app_name:string</span> <span>&#45;&gt;</span> <span>config:string</span> <span>&#45;&gt;</span> <a href="../Bantorra/Resolver/index.html#type-t">Bantorra.Resolver.t</a></code></dt><dd><h2 id="introduction"><a href="#introduction" class="anchor"></a>Introduction</h2><p>A resolver that reads the YAML user configuration at <code>$XDG_CONFIG_HOME/${app_name}/libraries</code>. Here is an example:</p><pre>format: &quot;1.0.0&quot;
+libraries:
+- name: num
+  version: &quot;3&quot;
+  at: &quot;/usr/lib/something/num34&quot;
+- name: tcp
+  version: &quot;2&quot;
+  at: &quot;/usr/lib/something/tcp21&quot;</pre><p>The resolver argument format is either</p><pre><code class="ml">`O [&quot;name&quot;, `String name; &quot;version&quot;, `String version]</code></pre><p>or</p><pre><code class="ml">`O [&quot;name&quot;, `String name; &quot;version&quot;, `Null]</code></pre><p>Versions are compared using structural equality. <code>null</code> only matches with <code>null</code>, not any string. There is no smart comparison or ordering between versions. However, one could have multiple entries as follows:</p><pre>format: &quot;1.0.0&quot;
+libraries:
+- name: num
+  version: &quot;2&quot;
+  at: &quot;/usr/lib/something/num25&quot;
+- name: num
+  version: &quot;2.5&quot;
+  at: &quot;/usr/lib/something/num25&quot;
+- name: num
+  version: &quot;3&quot;
+  at: &quot;/usr/lib/something/num34&quot;
+- name: num
+  version: &quot;3.4&quot;
+  at: &quot;/usr/lib/something/num34&quot;
+- name: num
+  version: null
+  at: &quot;/usr/lib/something/num34&quot;
+- name: tcp
+  version: &quot;2&quot;
+  at: &quot;/usr/lib/something/tcp21&quot;
+- name: tcp
+  version: &quot;2.1&quot;
+  at: &quot;/usr/lib/something/tcp21&quot;</pre><h2 id="the-builder"><a href="#the-builder" class="anchor"></a>The Builder</h2><p><code>resolver ~app_name ~config</code> constructs a resolver based on the user configuration. The location of the user configuration is given by <a href="../BantorraBasis/Xdg/index.html#val-get_config_home"><code>BantorraBasis.Xdg.get_config_home</code></a>. All paths will be normalized and turned into absolute paths using <a href="../BantorraBasis/File/index.html#val-normalize_dir"><code>BantorraBasis.File.normalize_dir</code></a>.</p></dd></dl></div></body></html>
