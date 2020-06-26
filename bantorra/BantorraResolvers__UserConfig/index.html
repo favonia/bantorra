@@ -6,7 +6,7 @@ libraries:
   at: &quot;/usr/lib/something/num34&quot;
 - name: tcp
   version: &quot;2&quot;
-  at: &quot;/usr/lib/something/tcp21&quot;</pre><p>The resolver argument format is either</p><pre><code class="ml">`O [&quot;name&quot;, `String name; &quot;version&quot;, `String version]</code></pre><p>or</p><pre><code class="ml">`O [&quot;name&quot;, `String name; &quot;version&quot;, `Null]</code></pre><p>Versions are compared using structural equality. <code>null</code> only matches with <code>null</code>, not any string. There is no smart comparison or ordering between versions. However, one could have multiple entries as follows:</p><pre>format: &quot;1.0.0&quot;
+  at: &quot;/usr/lib/something/tcp21&quot;</pre><p>The resolver argument format is either</p><pre><code class="ml">`O [&quot;name&quot;, `String name; &quot;version&quot;, `String version]</code></pre><p>or</p><pre><code class="ml">`O [&quot;name&quot;, `String name; &quot;version&quot;, `Null]</code></pre><p>Versions are compared using structural equality. There is no smart comparison or ordering between versions. Each version is completely independent of each other; <code>null</code> only matches <code>null</code>, not any string. However, one could have multiple entries as follows to dispatch on versions:</p><pre>format: &quot;1.0.0&quot;
 libraries:
 - name: num
   version: &quot;2&quot;
@@ -28,4 +28,4 @@ libraries:
   at: &quot;/usr/lib/something/tcp21&quot;
 - name: tcp
   version: &quot;2.1&quot;
-  at: &quot;/usr/lib/something/tcp21&quot;</pre><h2 id="the-builder"><a href="#the-builder" class="anchor"></a>The Builder</h2><p><code>resolver ~app_name ~config</code> constructs a resolver based on the user configuration. The location of the user configuration is given by <a href="../BantorraBasis/Xdg/index.html#val-get_config_home"><code>BantorraBasis.Xdg.get_config_home</code></a>. All paths will be normalized and turned into absolute paths using <a href="../BantorraBasis/File/index.html#val-normalize_dir"><code>BantorraBasis.File.normalize_dir</code></a>.</p></dd></dl></div></body></html>
+  at: &quot;/usr/lib/something/tcp21&quot;</pre><h2 id="the-builder"><a href="#the-builder" class="anchor"></a>The Builder</h2><p><code>resolver ~app_name ~config</code> constructs a resolver that reads the user configuration. The location of the user configuration is given by <a href="../BantorraBasis/Xdg/index.html#val-get_config_home"><code>BantorraBasis.Xdg.get_config_home</code></a>. All paths are normalized and turned into absolute paths using <a href="../BantorraBasis/File/index.html#val-normalize_dir"><code>BantorraBasis.File.normalize_dir</code></a>.</p><p>The confugiration file will only be read once during the construction. There is currentnly no way to force existing resolvers to re-read the user configuration files.</p></dd></dl></div></body></html>
