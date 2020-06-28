@@ -6,9 +6,9 @@ libraries:
   at: &quot;/usr/lib/something/num34&quot;
 - name: tcp
   version: &quot;2&quot;
-  at: &quot;/usr/lib/something/tcp21&quot;</pre><p>The resolver argument format is either</p><pre><code class="ml">`O [&quot;name&quot;, `String &quot;bantorra&quot;; &quot;version&quot;, `String &quot;1.0.0&quot;]</code></pre><p>or</p><pre><code class="ml">`O [&quot;name&quot;, `String &quot;bantorra&quot;; &quot;version&quot;, `Null]</code></pre><p>or</p><pre><code class="ml">`O [&quot;name&quot;, `String &quot;bantorra&quot;]</code></pre><p>In YAML, it should be</p><pre>name: name
-verson: version</pre><p>or</p><pre>name: name
-verson: null</pre><p>or</p><pre>name: name</pre><p>A missing version is understood as the version <code>null</code>.</p><p>Versions are compared using structural equality. There is no smart comparison or ordering between versions. Each version is completely independent of each other; <code>null</code> only matches <code>null</code>, not any string. However, one could have multiple entries as follows to dispatch on versions:</p><pre>format: &quot;1.0.0&quot;
+  at: &quot;/usr/lib/something/tcp21&quot;</pre><p>The resolver takes YAML arguments in one of the following formats:</p><pre>name: &quot;bantorra&quot;
+verson: &quot;0.1.0&quot;</pre><pre>name: &quot;bantorra&quot;
+verson: null</pre><pre>name: &quot;bantorra&quot;</pre><p>A missing version is understood as the version <code>null</code>. Therefore, the last two specifications are identical.</p><p>Versions are compared using structural equality. There is no smart comparison or ordering between versions. Each version is completely independent of each other; <code>null</code> only matches <code>null</code>, not any string. However, one could have multiple entries as follows to dispatch on versions:</p><pre>format: &quot;1.0.0&quot;
 libraries:
 - name: num
   version: &quot;2&quot;
